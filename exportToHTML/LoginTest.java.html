@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>LoginTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+LoginTest.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">app.integration; 
+ 
+</span><span class="s0">import </span><span class="s1">org.junit.Test; 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.By; 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.JavascriptExecutor; 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebDriver; 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.WebElement; 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.chrome.ChromeDriver; 
+</span><span class="s0">import </span><span class="s1">org.openqa.selenium.interactions.Actions; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.List; 
+</span><span class="s0">import </span><span class="s1">java.util.concurrent.TimeUnit; 
+ 
+ 
+</span><span class="s2">/** 
+ * Created by Nathalie on 2/6/2017. 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">LoginTest { 
+    WebDriver driver; 
+ 
+    @Test 
+ 
+ 
+    </span><span class="s0">public void </span><span class="s1">simpleLoginTest (){ 
+ 
+        System.setProperty(</span><span class="s3">&quot;webdriver.chrome.driver&quot;</span><span class="s1">, </span><span class="s3">&quot;C:</span><span class="s0">\\</span><span class="s3">Automation</span><span class="s0">\\</span><span class="s3">chromedriver_win32</span><span class="s0">\\</span><span class="s3">chromedriver.exe&quot;</span><span class="s1">); 
+        driver = </span><span class="s0">new </span><span class="s1">ChromeDriver(); 
+        driver.get(</span><span class="s3">&quot;https://learningplatform.openenglish.com&quot;</span><span class="s1">); 
+        driver.manage().timeouts().implicitlyWait(</span><span class="s4">15</span><span class="s1">, TimeUnit.SECONDS); 
+        WebElement email = driver.findElement(By.id(</span><span class="s3">&quot;username&quot;</span><span class="s1">)); 
+        email.sendKeys(</span><span class="s3">&quot;adanathalie@gmail.com&quot;</span><span class="s1">); 
+        WebElement password = driver.findElement(By.id(</span><span class="s3">&quot;password&quot;</span><span class="s1">)); 
+        password.sendKeys(</span><span class="s3">&quot;ada914san&quot;</span><span class="s1">); 
+        WebElement cookies = driver.findElement(By.xpath(</span><span class="s3">&quot;//a[text()='Continue']&quot;</span><span class="s1">)); 
+        cookies.click(); 
+        WebElement login = driver.findElement(By.id(</span><span class="s3">&quot;login-btn&quot;</span><span class="s1">)); 
+        login.click(); 
+ 
+    } 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">resumeLesson (){ 
+ 
+        simpleLoginTest(); 
+ 
+        driver.manage().timeouts().implicitlyWait(</span><span class="s4">6</span><span class="s1">, TimeUnit.SECONDS); 
+        WebElement start = driver.findElement(By.xpath(</span><span class="s3">&quot;//a[text()='Start']&quot;</span><span class="s1">)); 
+        System.out.println(</span><span class="s3">&quot;X coordinate: &quot;</span><span class="s1">+ start.getLocation().getX()+ </span><span class="s3">&quot;Y Coordinate: &quot; </span><span class="s1">+ start.getLocation().getY()); 
+        Actions builder =  </span><span class="s0">new </span><span class="s1">Actions(driver); 
+        builder.moveByOffset(start.getLocation().getX()+</span><span class="s4">1</span><span class="s1">, start.getLocation().getY()+</span><span class="s4">1</span><span class="s1">).click(); 
+        builder.perform(); 
+ 
+       </span><span class="s2">/* start.click(); 
+        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);*/</span><span class="s1"> 
+ 
+ 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>
